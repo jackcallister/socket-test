@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+  </head>
+  <body>
+
+    <div id="counter"></div>
+
+    <script>
+      var socket = io();
+
+
+      document.onkeydown = function(e) {
+        if (e.keyCode == 38) {
+          socket.emit('move', 'up');
+        }
+
+        if (e.keyCode == 40) {
+          socket.emit('move', 'down');
+        }
+      }
+      
+      socket.on('state', function(msg) {
+        document.getElementById('counter').innerHTML = msg;
+      })
+    </script>
+  </body>
+</html>
